@@ -3,8 +3,7 @@ using System.Collections;
 
 public class MovementScript : MonoBehaviour
 {
-    public float speed = 1f
-        ;
+	public float speed;
 	// Use this for initialization
 	void Start ()
     {
@@ -36,13 +35,12 @@ public class MovementScript : MonoBehaviour
         
         if (Input.GetKey(KeyCode.Q))
         {
-            transform.Rotate(new Vector3(0, 0, -180) * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 0, 180) * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            transform.Rotate(new Vector3(0, 0, 180) * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 0, -180) * Time.deltaTime);
         }
     }
 }
-
