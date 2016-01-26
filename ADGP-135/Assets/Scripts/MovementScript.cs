@@ -36,14 +36,12 @@ public class MovementScript : MonoBehaviour
         
         if (Input.GetKey(KeyCode.Q))
         {
-            transform.position += new Vector3(0.0f, speed * 2 * Time.deltaTime, 0.0f);
-            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 0, -180) * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            transform.position += new Vector3(0.0f, speed * -2 * Time.deltaTime, 0.0f);
-            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 0, 180) * Time.deltaTime);
         }
     }
 }
