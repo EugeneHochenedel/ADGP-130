@@ -3,27 +3,29 @@ using System.Collections;
 
 public class CamControl : MonoBehaviour {
 
-	public GameObject target;
 	public float rotateSpeed = 5;
-	Vector3 offset;
-
+	
 	void Start()
 	{
-		//offset = target.transform.position - transform.position;
+		
 	}
 
 	void LateUpdate()
 	{
-		float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-		target.transform.Rotate(0, horizontal, 0);
+		float Yaw = Input.GetAxis("Mouse X") * rotateSpeed;
+		transform.Rotate(0, Yaw, 0);
 
-		float Vertical = Input.GetAxis("Mouse Y") * rotateSpeed * -1;
-		target.transform.Rotate(Vertical, 0, 0);
+		float Pitch = Input.GetAxis("Mouse Y") * rotateSpeed;
+		transform.Rotate(Pitch, 0, 0);
 
-		//float desiredAngle = target.transform.eulerAngles.y;
-		//Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-		//transform.position = target.transform.position - (rotation * offset);
+		float desiredYaw = transform.eulerAngles.y;
+		Quaternion rotation = Quaternion.Euler(0, desiredYaw, 0);
+		//transform.position = rotation;
 
-		transform.LookAt(target.transform);
+		float desiredPitch = transform.eulerAngles.x;
+		Quaternion rotation2 = Quaternion.Euler(desiredPitch, 0, 0);
+		//transform.position = rotation2;
+
+		//transform.LookAt(transform);
 	}
 }
