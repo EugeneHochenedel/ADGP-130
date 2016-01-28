@@ -7,11 +7,11 @@ public class Controlss : MonoBehaviour {
 	public float AimSensitivity;
 
 	float Pitch = 0.0f;
-	public float PitchRange;
+	//public float PitchRange;
 
 	// Use this for initialization
 	void Start () {
-	
+		Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
@@ -20,9 +20,8 @@ public class Controlss : MonoBehaviour {
 		float Yaw = Input.GetAxis("Mouse X") * AimSensitivity;
 		transform.Rotate(0, Yaw, 0);
 
-		
 		Pitch -= Input.GetAxis("Mouse Y") * AimSensitivity;
-		Pitch = Mathf.Clamp(Pitch, -Pitch, Pitch);
+		
 		Camera.main.transform.localRotation = Quaternion.Euler(Pitch, 0, 0);
 
 		float LongitudinalSpeed = Input.GetAxis("Vertical") * Velocity;
@@ -34,6 +33,6 @@ public class Controlss : MonoBehaviour {
 
 		CharacterController cc = GetComponent<CharacterController>();
 
-		cc.SimpleMove(speed);
+		cc.Move(speed);
 	}
 }
