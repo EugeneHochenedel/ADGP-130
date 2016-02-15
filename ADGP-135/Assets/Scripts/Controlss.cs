@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Controlss : MonoBehaviour {
 
+	//public GameObject Attack_Prefab;
+
 	//Used for the movement speed of the player
 	public float Velocity;
 
@@ -45,5 +47,11 @@ public class Controlss : MonoBehaviour {
 
 		CharacterController playerMotion = GetComponent<CharacterController>();
 		playerMotion.Move(speed);
+
+		//float Shoot = Input.GetAxis("Fire1");
+		//Instantiate(Attack_Prefab, transform.position, transform.rotation);
+			//Camera cam = Camera.main;
+			//Instantiate(Attack_Prefab, transform.position, cam.transform.rotation);
+		
 	}
 }
