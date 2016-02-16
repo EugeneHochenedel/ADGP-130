@@ -25,18 +25,18 @@ public class Controlss : MonoBehaviour {
 		float Roll = Input.GetAxis("Diagonal") * AimSensitivity / 2;
 		Camera.main.transform.localRotation = Quaternion.Euler(Roll, 0, 0);
 
-		//Allows the user to rotate the Player gameObject around the X-Axis by moving the mouse/cursor along the Y-Axis 
+		//Allows the user to rotate the Player gameObject around the X-Axis by moving the mouse/cursor along the Y-Axis
 		float Pitch = -Input.GetAxis("Mouse Y") * AimSensitivity;
 		transform.Rotate(Pitch, 0, Roll); //Returns rotation along the Y-Axis and compensates for rotation on the Z-Axis
 
-		//Allows the user to rotate the Player gameObject around the Y-Axis by moving the mouse/cursor along the X-Axis 
+		//Allows the user to rotate the Player gameObject around the Y-Axis by moving the mouse/cursor along the X-Axis
 		float Yaw = Input.GetAxis("Mouse X") * AimSensitivity;
 		transform.Rotate(0, Yaw, Roll);
 
 		//All movement seems to be relative to the rotation of the Player gameObject
 		//Allows for movement of the Player gameObject using 'W' & 'S' or the 'up' and 'down' arrowkeys
 		float LongitudinalSpeed = Input.GetAxis("Vertical") * Velocity;
-		//Allows for movement of the Player gameObject using 'A' & 'D' or the 'left' & 'right' arrowkeys 
+		//Allows for movement of the Player gameObject using 'A' & 'D' or the 'left' & 'right' arrowkeys
 		float LateralSpeed = Input.GetAxis("Horizontal") * Velocity;
 		//Allows for movement of the Player gameObject using 'left shift' & 'space'
 		float VerticalSpeed = Input.GetAxis("Jump") * Velocity;
@@ -47,11 +47,5 @@ public class Controlss : MonoBehaviour {
 
 		CharacterController playerMotion = GetComponent<CharacterController>();
 		playerMotion.Move(speed);
-
-		//float Shoot = Input.GetAxis("Fire1");
-		//Instantiate(Attack_Prefab, transform.position, transform.rotation);
-			//Camera cam = Camera.main;
-			//Instantiate(Attack_Prefab, transform.position, cam.transform.rotation);
-		
 	}
 }
