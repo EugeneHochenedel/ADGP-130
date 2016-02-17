@@ -21,13 +21,15 @@ public class Shooting : MonoBehaviour {
 
 		userProjectile.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BulletVelocity, ForceMode.Force);
 
+		Destroy(userProjectile, 4.0f);
 	}
 
 	void FireSecond()
 	{
 
-		GameObject UserMissile = (GameObject)Instantiate(Alt_Prefab, Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.rotation);
-		UserMissile.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BulletVelocity, ForceMode.Force);
+		GameObject userMissile = (GameObject)Instantiate(Alt_Prefab, Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.rotation);
+		userMissile.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BulletVelocity, ForceMode.Force);
+		Destroy(userMissile, 5.0f);
 	}
 
 	// Update is called once per frame
@@ -45,4 +47,6 @@ public class Shooting : MonoBehaviour {
 			FireSecond();
 		}
 	}
+
+
 }
