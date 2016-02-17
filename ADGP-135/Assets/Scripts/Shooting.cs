@@ -10,34 +10,24 @@ public class Shooting : MonoBehaviour {
 	//Used for controling the rate at which the player launches projectiles
 	public float bulletRate;
 	private float nextBullet = 0.0F;
+	public float missileRate;
+	private float nextMissile = 0.0F;
 
 	//Function for primary attack
 	void FireFirst()
 	{
-		
-		GameObject UserProjectile = Instantiate(Attack_Prefab);
-		UserProjectile.transform.position = gameObject.transform.position + new Vector3(0, 0.55f, 2);
-		UserProjectile.transform.rotation = Camera.main.transform.rotation;
 
-		Rigidbody ShotBody;
-		ShotBody = UserProjectile.GetComponent<Rigidbody>();
-		ShotBody.transform.position = Camera.main.transform.position;
-		ShotBody.AddForce(gameObject.transform.forward * BulletVelocity, ForceMode.Force);
+		GameObject userProjectile = (GameObject)Instantiate(Attack_Prefab, Camera.main.transform.position + Camera.main.transform.forward, transform.rotation);
+
+		userProjectile.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BulletVelocity, ForceMode.Force);
 
 	}
 
 	void FireSecond()
 	{
-		GameObject UserMissile = Instantiate(Alt_Prefab);
-		UserMissile.transform.position = gameObject.transform.position + new Vector3(0, 0.55f, 3);
-		//UserMissile.transform.rotation = Camera.main.transform.rotation;
-		UserMissile.transform.localRotation = Quaternion.Euler(90, 0, 0);
 
-		Rigidbody MissileBody;
-		MissileBody = UserMissile.GetComponent<Rigidbody>();
-		MissileBody.transform.position = Camera.main.transform.position;
-		//MissileBody.transform.rotation = Quaternion.Euler(90, Camera.main.transform.rotation.y, Camera.main.transform.rotation.z);
-		MissileBody.AddForce(gameObject.transform.forward * BulletVelocity, ForceMode.Force);
+		GameObject UserMissile = (GameObject)Instantiate(Alt_Prefab, Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.rotation);
+		UserMissile.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BulletVelocity, ForceMode.Force);
 	}
 
 	// Update is called once per frame
@@ -49,9 +39,9 @@ public class Shooting : MonoBehaviour {
 			FireFirst();
 		}
 
-		if(Input.GetButtonDown("Fire2") && Time.time > nextBullet)
+		if(Input.GetButton("Fire2") && Time.time > nextMissile)
 		{
-			nextBullet = Time.time + bulletRate;
+			nextMissile = Time.time + missileRate;
 			FireSecond();
 		}
 	}

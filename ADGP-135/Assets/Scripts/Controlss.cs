@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Controlss : MonoBehaviour {
 
-	//public GameObject Attack_Prefab;
-
 	//Used for the movement speed of the player
 	public float Velocity;
 
