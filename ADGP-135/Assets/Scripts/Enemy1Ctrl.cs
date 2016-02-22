@@ -3,17 +3,21 @@ using System.Collections;
 
 public class Enemy1Ctrl : MonoBehaviour
 {
+    public GameObject Target;
     public GameObject Bullet;
     public float speed;
 
     void Shoot()
     {
-  
+        //Spawning Bullet
         GameObject B = Instantiate(Bullet);
-
         B.transform.position = gameObject.transform.position;
 
-        B.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * speed);
+        //Calculations
+        Vector3 Force = (Target.transform.position - transform.position).normalized;
+
+        //Applying the force
+        B.GetComponent<Rigidbody>().AddForce(Force *speed * Time.deltaTime);
     }
 
 
