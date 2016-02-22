@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Controlss : MonoBehaviour {
@@ -9,12 +10,15 @@ public class Controlss : MonoBehaviour {
 	//Used for the movement speed of the camera
 	public float AimSensitivity;
 
+	//bool Paused;
+
 	// Use this for initialization
 	void Start () {
 		//Hides the cursor and locks it to the screen while the game is being played.
 		Cursor.lockState = CursorLockMode.Locked;
+		//Paused = false;
 	}
-
+	
 	// Update is called once per frame
 	void Update() {
 		
@@ -38,7 +42,6 @@ public class Controlss : MonoBehaviour {
 		float LateralSpeed = Input.GetAxis("Horizontal") * Velocity;
 		//Allows for movement of the Player gameObject using 'left shift' & 'space'
 		float VerticalSpeed = Input.GetAxis("Jump") * Velocity;
-
 		
 		Vector3 speed = new Vector3(LateralSpeed, VerticalSpeed, LongitudinalSpeed);
 		speed = transform.localRotation * speed;
@@ -46,4 +49,5 @@ public class Controlss : MonoBehaviour {
 		CharacterController playerMotion = GetComponent<CharacterController>();
 		playerMotion.Move(speed);
 	}
+	
 }
