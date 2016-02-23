@@ -10,6 +10,11 @@ public class EndGameScript : MonoBehaviour
         SceneManager.LoadScene(e);
     }
 
+	//void Start()
+	//{
+		
+	//}
+
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +24,8 @@ public class EndGameScript : MonoBehaviour
             (transform.position.z <= -317 && transform.position.z >= -435))
         {
             Load("TheEnd");
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
         }
     }
 }

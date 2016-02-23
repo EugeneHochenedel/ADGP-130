@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class Controlss : MonoBehaviour {
 
@@ -10,23 +13,18 @@ public class Controlss : MonoBehaviour {
 	//Used for the movement speed of the camera
 	public float AimSensitivity;
 
-	bool Paused;
-	public Text pauseText;
-	//public Button topButton;
-	public Canvas PauseMenu;
 	// Use this for initialization
 	void Start () {
 		//Hides the cursor and locks it to the screen while the game is being played.
 		Cursor.lockState = CursorLockMode.Locked;
-		Paused = false;
-		PauseMenu = PauseMenu.GetComponent<Canvas>();
-		PauseMenu.enabled = false;
+
 		
 	}
-	
+
 	// Update is called once per frame
-	void Update() {
-		
+	void Update()
+	{
+
 		//Allows the user to rotate the Player gameObject about the Z-Axis using 'Q' & 'E'
 		//The Diagonal was added to the Input Manager in the Project Settings, to allow for the shift along the Z-Axis
 		float Roll = Input.GetAxis("Diagonal") * AimSensitivity / 2;
@@ -47,7 +45,7 @@ public class Controlss : MonoBehaviour {
 		float LateralSpeed = Input.GetAxis("Horizontal") * Velocity;
 		//Allows for movement of the Player gameObject using 'left shift' & 'space'
 		float VerticalSpeed = Input.GetAxis("Jump") * Velocity;
-		
+
 		Vector3 speed = new Vector3(LateralSpeed, VerticalSpeed, LongitudinalSpeed);
 		speed = transform.localRotation * speed;
 
@@ -56,24 +54,9 @@ public class Controlss : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			Paused = !Paused;
-			pauseText.text = "PAUSE";
-		}
-		if (Paused == true)
-		{
+			SceneManager.LoadScene("Pause Menu");
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
-			PauseMenu.enabled = true;
-			Time.timeScale = 0;
 		}
-		else if(Paused == false)
-		{
-			pauseText.text = "";
-			Time.timeScale = 1;
-			PauseMenu.enabled = false;
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-		//if(Input(topButton.onClick))
 	}
-	
 }
