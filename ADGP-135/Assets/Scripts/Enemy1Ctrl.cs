@@ -7,6 +7,7 @@ public class Enemy1Ctrl : MonoBehaviour
     public GameObject Bullet;
     public float speed;
     public float TimeBtwnShots;
+	private float nextBullet = 0.0f;
 
     void Shoot()
     {
@@ -19,14 +20,16 @@ public class Enemy1Ctrl : MonoBehaviour
 
         //Applying the force
         B.GetComponent<Rigidbody>().AddForce(Force *speed * Time.deltaTime);
+
+
+		//Destroy(B, 2.0f);
     }
-
-
 
     void Update()
     {
-        if (TimeBtwnShots == Time.deltaTime)
+        if (Time.time > nextBullet)
         {
+			nextBullet = Time.time + TimeBtwnShots;
             Shoot();
         }
     }
