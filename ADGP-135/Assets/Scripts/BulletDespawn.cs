@@ -8,7 +8,12 @@ public class BulletDespawn : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        BulletTime = Time.deltaTime;
+        BulletTime += Time.deltaTime;
+
+        if (BulletTime >= 1.0f)
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 }

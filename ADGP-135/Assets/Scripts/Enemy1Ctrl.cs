@@ -6,6 +6,7 @@ public class Enemy1Ctrl : MonoBehaviour
     public GameObject Target;
     public GameObject Bullet;
     public float speed;
+    public float TimeBtwnShots;
 
     void Shoot()
     {
@@ -24,7 +25,7 @@ public class Enemy1Ctrl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (TimeBtwnShots == Time.deltaTime)
         {
             Shoot();
         }
