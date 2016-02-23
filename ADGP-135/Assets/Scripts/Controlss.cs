@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Controlss : MonoBehaviour {
@@ -10,13 +10,18 @@ public class Controlss : MonoBehaviour {
 	//Used for the movement speed of the camera
 	public float AimSensitivity;
 
-	//bool Paused;
-
+	bool Paused;
+	public Text pauseText;
+	//public Button topButton;
+	public Canvas PauseMenu;
 	// Use this for initialization
 	void Start () {
 		//Hides the cursor and locks it to the screen while the game is being played.
 		Cursor.lockState = CursorLockMode.Locked;
-		//Paused = false;
+		Paused = false;
+		PauseMenu = PauseMenu.GetComponent<Canvas>();
+		PauseMenu.enabled = false;
+		
 	}
 	
 	// Update is called once per frame
@@ -48,6 +53,27 @@ public class Controlss : MonoBehaviour {
 
 		CharacterController playerMotion = GetComponent<CharacterController>();
 		playerMotion.Move(speed);
+
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			Paused = !Paused;
+			pauseText.text = "PAUSE";
+		}
+		if (Paused == true)
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+			PauseMenu.enabled = true;
+			Time.timeScale = 0;
+		}
+		else if(Paused == false)
+		{
+			pauseText.text = "";
+			Time.timeScale = 1;
+			PauseMenu.enabled = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+		//if(Input(topButton.onClick))
 	}
 	
 }

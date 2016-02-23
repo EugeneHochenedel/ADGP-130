@@ -47,6 +47,4 @@ public class Shooting : MonoBehaviour {
 			FireSecond();
 		}
 	}
-
-
 }
